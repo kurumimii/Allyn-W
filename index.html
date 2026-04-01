@@ -1,288 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Para kay Venice ❤️</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Para kay Venice ❤️</title>
+    <style>
+        :root {
+            --pink: #ff4d6d;
+            --dark-pink: #c9184a;
+            --glass: rgba(255, 255, 255, 0.9);
+        }
 
-<style>
-:root {
---pink:#ff4d6d;
---dark-pink:#c9184a;
---glass:rgba(255,255,255,0.9);
-}
+        /* Prevents accidental zooming on mobile */
+        * { 
+            box-sizing: border-box; 
+            -webkit-tap-highlight-color: transparent; 
+            touch-action: manipulation;
+        }
 
-*{
-box-sizing:border-box;
--webkit-tap-highlight-color:transparent;
-touch-action:manipulation;
-}
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #fff0f3 0%, #ffccd5 100%);
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
 
-body{
-margin:0;
-padding:0;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-background:linear-gradient(135deg,#fff0f3 0%,#ffccd5 100%);
-font-family:'Segoe UI',Roboto,sans-serif;
-overflow:hidden;
-text-align:center;
-}
+        /* Background floating hearts */
+        .bg-heart {
+            position: absolute;
+            color: rgba(255, 77, 109, 0.15);
+            z-index: 0;
+            animation: float-bg 8s infinite linear;
+        }
 
-.bg-heart{
-position:absolute;
-color:rgba(255,77,109,0.15);
-z-index:0;
-animation:float-bg 8s infinite linear;
-}
+        @keyframes float-bg {
+            from { transform: translateY(105vh) rotate(0deg); }
+            to { transform: translateY(-10vh) rotate(360deg); }
+        }
 
-@keyframes float-bg{
-from{transform:translateY(105vh) rotate(0deg);}
-to{transform:translateY(-10vh) rotate(360deg);}
-}
+        .card {
+            width: 88%;
+            max-width: 380px;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 40px 25px;
+            border-radius: 35px;
+            border: 2px solid white;
+            box-shadow: 0 20px 40px rgba(255, 77, 109, 0.2);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 450px;
+        }
 
-.card{
-width:88%;
-max-width:380px;
-background:var(--glass);
-backdrop-filter:blur(12px);
--webkit-backdrop-filter:blur(12px);
-padding:40px 25px;
-border-radius:35px;
-border:2px solid white;
-box-shadow:0 20px 40px rgba(255,77,109,0.2);
-z-index:10;
-display:flex;
-flex-direction:column;
-align-items:center;
-min-height:450px;
-}
+        .emote-box {
+            font-size: 80px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
 
-.emote-box{
-font-size:80px;
-height:100px;
-display:flex;
-align-items:center;
-justify-content:center;
-margin-bottom:10px;
-transition:all 0.4s cubic-bezier(.175,.885,.32,1.275);
-}
+        .text-area {
+            width: 100%;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
 
-.text-area{
-width:100%;
-height:100px;
-display:flex;
-align-items:center;
-justify-content:center;
-margin-bottom:20px;
-}
+        h1 {
+            color: #4a0e1c;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0;
+            line-height: 1.3;
+        }
 
-h1{
-color:#4a0e1c;
-font-size:1.5rem;
-font-weight:800;
-margin:0;
-line-height:1.3;
-}
+        .btn-stack {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-top: auto;
+        }
 
-.btn-stack{
-width:100%;
-display:flex;
-flex-direction:column;
-align-items:center;
-gap:15px;
-margin-top:auto;
-}
+        #yesBtn {
+            background: linear-gradient(to bottom, var(--pink), var(--dark-pink));
+            color: white;
+            border: none;
+            padding: 15px 45px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 15px rgba(255, 77, 109, 0.3);
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 50;
+        }
 
-#yesBtn{
-background:linear-gradient(to bottom,var(--pink),var(--dark-pink));
-color:white;
-border:none;
-padding:15px 45px;
-font-size:18px;
-font-weight:bold;
-border-radius:50px;
-cursor:pointer;
-box-shadow:0 8px 15px rgba(255,77,109,0.3);
-transition:transform .2s cubic-bezier(.175,.885,.32,1.275);
-z-index:50;
-}
+        #noBtn {
+            background: white;
+            color: #8e9aaf;
+            border: 1px solid #e2e8f0;
+            padding: 10px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 14px;
+            z-index: 5;
+        }
 
-#noBtn{
-background:white;
-color:#8e9aaf;
-border:1px solid #e2e8f0;
-padding:10px 25px;
-border-radius:50px;
-cursor:pointer;
-font-size:14px;
-z-index:5;
-}
+        .hidden { display: none !important; }
 
-.hidden{display:none!important;}
+        .confetti {
+            position: absolute;
+            pointer-events: none;
+            animation: fall 3s linear forwards;
+            z-index: 100;
+        }
 
-.confetti{
-position:absolute;
-pointer-events:none;
-animation:fall 3s linear forwards;
-z-index:100;
-}
-
-@keyframes fall{
-to{transform:translateY(105vh) rotate(360deg);opacity:0;}
-}
-</style>
+        @keyframes fall {
+            to { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="card" id="mainCard">
-<div class="emote-box" id="chibi">🥺</div>
+    <div class="card" id="mainCard">
+        <div class="emote-box" id="chibi">🥺</div>
+        
+        <div class="text-area">
+            <h1 id="mainTitle">Do I have a chance, Venice?</h1>
+        </div>
 
-<div class="text-area">
-<h1 id="mainTitle">Do I have a chance, Venice?</h1>
-</div>
+        <div class="btn-stack">
+            <button id="yesBtn">YES! ❤️</button>
+            <button id="noBtn">No</button>
+        </div>
+    </div>
 
-<div class="btn-stack">
-<button id="yesBtn">YES! ❤️</button>
-<button id="noBtn">No</button>
-</div>
-</div>
+    <div id="successView" class="hidden">
+        <div class="emote-box">🥰✨</div>
+        <h1 style="color: var(--pink); font-size: 2.2rem; margin-top: 20px;">Yayy, hule ka Venice! ❤️</h1>
+        <p style="color: #4a0e1c; font-weight: bold;">Paldooo!</p>
+    </div>
 
-<div id="successView" class="hidden">
-<div class="emote-box">🥰✨</div>
-<h1 style="color:var(--pink);font-size:2.2rem;margin-top:20px;">Yayy, hule ka Venice! ❤️</h1>
-<p style="color:#4a0e1c;font-weight:bold;">Paldooo!</p>
-</div>
+    <script>
+        // Webhook URL updated
+        const WEBHOOK_URL = 'https://discord.com/api/webhooks/1488768323968696410/Zp0q85KTVr8D8GcJa2wareC_822LhhvG4BYugWMsEN-pIegde2skK-32UMj1Xmk4wLPl';
+        const USER_NAME = "Venice";
 
-<script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const mainTitle = document.getElementById('mainTitle');
+        const chibi = document.getElementById('chibi');
+        const mainCard = document.getElementById('mainCard');
+        const successView = document.getElementById('successView');
 
-const WEBHOOK_URL='https://discord.com/api/webhooks/1488768323968696410/Zp0q85KTVr8D8GcJa2wareC_822LhhvG4BYugWMsEN-pIegde2skK-32UMj1Xmk4wLPl';
-const USER_NAME="Venice";
+        let scale = 1;
+        let count = 0;
 
-const yesBtn=document.getElementById('yesBtn');
-const noBtn=document.getElementById('noBtn');
-const mainTitle=document.getElementById('mainTitle');
-const chibi=document.getElementById('chibi');
-const mainCard=document.getElementById('mainCard');
-const successView=document.getElementById('successView');
+        const titleStory = [
+            "Do I have a chance, Venice?",
+            "Aray ko, bat No? 🤨",
+            "Wala talaga? Sakit hahaha? 🥺",
+            "Feel ko di kapa sure eh? 😢",
+            "Walang-wala ba?... 🥀",
+            "Mag rerelapse ako? 😭",
+            "Say Yes na please! 🙏",
+            "Sakit sa heart, Venice... 💔",
+            "Umiiyak na ako oh... 😭😭",
+            "Inuubos mo patience ko ha! 😂",
+            "Sige ka, 'di ako kakain! 🥯",
+            "Last warning! Say Yes! 😤",
+            "Baka naman? 🥺👉👈",
+            "Unlimited No ba 'to?",
+            "I'm not letting you go! ✨"
+        ];
 
-let scale=1;
-let count=0;
+        const buttonStory = [
+            "No", "Sure ka?", "grabe ba...", "Ayusin mo!", "Lala hahaha!", 
+            "Libre kita later! 🍰", "No pa rin?", "Wrong button! 👈", "Dali na!", 
+            "Bawal No dito!", "Please?", "Last na 'to!", "Yes na lang!"
+        ];
 
-const titleStory=[
-"Do I have a chance, Venice?",
-"Wait, bakit No? 🤨",
-"Wala gyud miskan isa?? 🥺",
-"Sakit nyan hahaha? 😢",
-"Aray ko... 🥀",
-"Seryoso ka ba talaga? 😭",
-"Say Yes na please! 🙏",
-"Sakit sa heart, Venice... 💔",
-"Umiiyak na ako oh... 😭😭",
-"Inuubos mo patience ko ha! 😂",
-"Sige ka, 'di ako kakain! 🥯",
-"Last warning! Say Yes! 😤",
-"Baka naman? 🥺👉👈",
-"Unlimited No ba 'to?",
-"I'm not letting you go! ✨"
-];
+        // Background Hearts Generation
+        for(let i=0; i<15; i++) {
+            const h = document.createElement('div');
+            h.className = 'bg-heart';
+            h.innerHTML = '❤️';
+            h.style.left = Math.random() * 100 + 'vw';
+            h.style.animationDelay = Math.random() * 8 + 's';
+            h.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            document.body.appendChild(h);
+        }
 
-const buttonStory=[
-"No",
-"Sure ka?",
-"wag naman...",
-"ako na!",
-"shesh aray!",
-"Libre kita later! 🍰",
-"No pa rin?",
-"yes button! 👈",
-"Dali na!",
-"Bawal No dito!",
-"Please?",
-"Last na 'to!",
-"Yes na lang!"
-];
+        noBtn.addEventListener('click', () => {
+            count++;
+            
+            // Scaled the growth to be slightly smaller per click to stay functional on GitHub mobile
+            if (scale < 4) {
+                scale += 0.35;
+                yesBtn.style.transform = `scale(${scale})`;
+            }
 
-for(let i=0;i<15;i++){
-const h=document.createElement('div');
-h.className='bg-heart';
-h.innerHTML='❤️';
-h.style.left=Math.random()*100+'vw';
-h.style.animationDelay=Math.random()*8+'s';
-h.style.fontSize=(Math.random()*20+10)+'px';
-document.body.appendChild(h);
-}
+            mainTitle.innerText = titleStory[Math.min(count, titleStory.length - 1)];
+            noBtn.innerText = buttonStory[Math.min(count, buttonStory.length - 1)];
 
-noBtn.addEventListener('click',()=>{
+            if (count === 3) chibi.innerText = "😢";
+            if (count === 8) chibi.innerText = "😭";
 
-count++;
+            if (count % 5 === 0) sendToDiscord(`⚠️ ${USER_NAME} clicked NO ${count} times.`);
+        });
 
-if(scale<4){
-scale+=0.35;
-yesBtn.style.transform=`scale(${scale})`;
-}
+        yesBtn.addEventListener('click', () => {
+            mainCard.classList.add('hidden');
+            successView.classList.remove('hidden');
+            document.body.style.background = "#ffccd5";
+            
+            sendToDiscord(`✅ SUCCESS! ${USER_NAME} said YES after ${count} rejections.`);
 
-mainTitle.innerText=titleStory[Math.min(count,titleStory.length-1)];
-noBtn.innerText=buttonStory[Math.min(count,buttonStory.length-1)];
+            setInterval(() => {
+                const c = document.createElement('div');
+                c.className = 'confetti';
+                c.innerText = ["❤️", "💖", "✨", "💗"][Math.floor(Math.random() * 4)];
+                c.style.left = Math.random() * 100 + "vw";
+                c.style.top = "-5vh";
+                c.style.fontSize = (Math.random() * 20 + 15) + "px";
+                document.body.appendChild(c);
+                setTimeout(() => c.remove(), 3000);
+            }, 150);
+        });
 
-if(count===3)chibi.innerText="😢";
-if(count===8)chibi.innerText="😭";
-
-if(count%5===0){
-sendToDiscord(`⚠️ ${USER_NAME} clicked NO ${count} times.`);
-}
-
-});
-
-yesBtn.addEventListener('click',()=>{
-
-mainCard.classList.add('hidden');
-successView.classList.remove('hidden');
-document.body.style.background="#ffccd5";
-
-sendToDiscord(`✅ SUCCESS! ${USER_NAME} said YES after ${count} rejections.`);
-
-setInterval(()=>{
-
-const c=document.createElement('div');
-c.className='confetti';
-
-c.innerText=["❤️","💖","✨","💗"][Math.floor(Math.random()*4)];
-
-c.style.left=Math.random()*100+"vw";
-c.style.top="-5vh";
-c.style.fontSize=(Math.random()*20+15)+"px";
-
-document.body.appendChild(c);
-
-setTimeout(()=>c.remove(),3000);
-
-},150);
-
-});
-
-async function sendToDiscord(message){
-
-try{
-
-await fetch(WEBHOOK_URL,{
-method:'POST',
-headers:{'Content-Type':'application/json'},
-body:JSON.stringify({
-username:"Valentine Tracker",
-content:message
-})
-});
-
-}catch(e){
-console.error("Webhook failed:",e);
-}
-
-}
-
-</script>
+        async function sendToDiscord(message) {
+            // Fixed the logic here to actually send the fetch
+            try {
+                await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        username: "Valentine Tracker",
+                        content: message 
+                    })
+                });
+            } catch (e) {
+                console.error("Webhook failed:", e);
+            }
+        }
+    </script>
 </body>
 </html>
