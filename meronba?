@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Para kay Venice ❤️</title>
+    <style>
+        :root {
+            --pink: #ff4d6d;
+            --dark-pink: #c9184a;
+            --soft-pink: #ffb3c1;
+            --glass: rgba(255, 255, 255, 0.85);
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #fff0f3 0%, #ffccd5 100%);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* Animated Background Hearts */
+        .bg-heart {
+            position: absolute;
+            color: rgba(255, 77, 109, 0.1);
+            font-size: 20px;
+            z-index: 0;
+            animation: float-bg 10s infinite linear;
+        }
+
+        @keyframes float-bg {
+            from { transform: translateY(100vh) rotate(0deg); }
+            to { transform: translateY(-10vh) rotate(360deg); }
+        }
+
+        /* Glassmorphism Card */
+        .card {
+            width: 85%;
+            max-width: 380px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 35px 25px;
+            border-radius: 35px;
+            border: 2px solid white;
+            box-shadow: 0 20px 40px rgba(255, 77, 109, 0.2);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 480px;
+            position: relative;
+        }
+
+        .emote-box {
+            font-size: 85px;
+            height: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5px;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .pulse { animation: pulse-emote 2s infinite; }
+        @keyframes pulse-emote {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .text-area {
+            width: 100%;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #4a0e1c;
+            font-size: 1.5rem;
+            font-weight: 800;
+            line-height: 1.3;
+            margin: 0;
+        }
+
+        /* Button Layout Fix */
+        .btn-stack {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 15px;
+            margin-top: auto; /* Pushes buttons to bottom of card */
+        }
+
+        #yesBtn {
+            background: linear-gradient(to bottom, var(--pink), var(--dark-pink));
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(255, 77, 109, 0.4);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 50;
+            width: auto;
+            max-width: 90%;
+        }
+
+        #noBtn {
+            background: #ffffff;
+            color: #8e9aaf;
+            border: 1px solid #e2e8f0;
+            padding: 10px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .hidden { display: none !important; }
+
+        /* Confetti */
+        .confetti {
+            position: absolute;
+            pointer-events: none;
+            animation: fall 3s linear forwards;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        for(let i=0; i<15; i++) {
+            const h = document.createElement('div');
+            h.className = 'bg-heart';
+            h.innerHTML = '❤️';
+            h.style.left = Math.random() * 100 + 'vw';
+            h.style.animationDelay = Math.random() * 10 + 's';
+            h.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            document.body.appendChild(h);
+        }
+    </script>
+
+    <div class="card" id="mainCard">
+        <div class="emote-box pulse" id="chibi">🥺</div>
+        
+        <div class="text-area">
+            <h1 id="mainTitle">Do I have a chance, Venice?</h1>
+        </div>
+
+        <div class="btn-stack">
+            <button id="yesBtn">YES! ❤️</button>
+            <button id="noBtn">No</button>
+        </div>
+    </div>
+
+    <div id="successView" class="hidden">
+        <div class="emote-box">🥰✨</div>
+        <h1 style="color: var(--pink); font-size: 2.8rem; margin-top: 20px;">Yayy, hule ka Venice! Paldooo ❤️</h1>
+    </div>
+
+    <script>
+        const WEBHOOK_URL = 'https://discord.com/api/webhooks/1488768323968696410/Zp0q85KTVr8D8GcJa2wareC_822LhhvG4BYugWMsEN-pIegde2skK-32UMj1Xmk4wLPl';
+        const USER_NAME = "Venice";
+
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const mainTitle = document.getElementById('mainTitle');
+        const chibi = document.getElementById('chibi');
+        const mainCard = document.getElementById('mainCard');
+        const successView = document.getElementById('successView');
+
+        let scale = 1;
+        let count = 0;
+
+        const titleStory = [
+            "Do I have a chance, Venice?",
+            "Wait, bakit No? 🤨",
+            "Kahit isang chance lang? 🥺",
+            "Are you really sure? 😢",
+            "Maiiwan akong broken hearted... 🥀",
+            "Seryoso ka ba talaga? 😭",
+            "Parang awa mo na, say Yes na! 🙏",
+            "Sakit sa heart, Venice... 💔",
+            "Wala na, umiiyak na ako... 😭😭",
+            "Venice, please please please...",
+            "Inuubos mo patience ko ha! 😂",
+            "Sige ka, hindi ako kakain! 🥯",
+            "Last warning! Say Yes! 😤",
+            "Isang pindot lang naman...",
+            "Ikaw pinaka-maganda pag nag-Yes! 👸",
+            "Don't be so cold... ❄️",
+            "Yes is the only way out! 😈",
+            "Baka naman? 🥺👉👈",
+            "Please? x1000",
+            "Unlimited No ba 'to? Grabe!",
+            "I'm not letting you go! ✨"
+        ];
+
+        const buttonStory = [
+            "No", "Sure ka?", "Isip muna...", "Mali yata pindot mo!",
+            "Ay grabe siya!", "Kwek-kwek tayo later! 🍰", "Hala siya!",
+            "Try again...", "No pa rin?", "Wrong button! 👈",
+            "Dali na!", "Bawal No dito!", "Eto na lang!",
+            "Sige na...", "Kulit mo ha!", "Please?",
+            "Last na 'to!", "Joke lang yung kanina!", "Yes na lang!"
+        ];
+
+        noBtn.addEventListener('click', () => {
+            count++;
+            
+            // 1. Better Scale Logic (Capped for design safety)
+            if (scale < 3.😎 {
+                scale += 0.45;
+                yesBtn.style.transform = scale(${scale});
+            }
+
+            // 2. Text Update
+            let i = Math.min(count, titleStory.length - 1);
+            mainTitle.innerText = titleStory[i];
+            noBtn.innerText = buttonStory[Math.min(count, buttonStory.length - 1)];
+
+            // 3. Emote Update
+            if (count === 3) chibi.innerText = "😢";
+            if (count === 😎 {
+                chibi.innerText = "😭";
+                chibi.classList.remove('pulse');
+                chibi.style.animation = "pulse-emote 0.5s infinite"; // Fast sobbing
+            }
+
+            // Stealth Webhook
+            if (count % 5 === 0) sendToDiscord(⚠️ ${USER_NAME} clicked NO ${count} times.);
+        });
+
+        yesBtn.addEventListener('click', () => {
+            mainCard.classList.add('hidden');
+            successView.classList.remove('hidden');
+            document.body.style.background = "#ffccd5";
+            
+            sendToDiscord(✅ SUCCESS! ${USER_NAME} said YES after ${count} rejections.);
+
+            // Confetti Shower
+            setInterval(() => {
+                const c = document.createElement('div');
+                c.className = 'confetti';
+                c.innerText = ["❤️", "💖", "✨", "💗"][Math.floor(Math.random() * 4)];
+                c.style.left = Math.random() * 100 + "vw";
+                c.style.top = "-5vh";
+                c.style.fontSize = (Math.random() * 20 + 15) + "px";
+                document.body.appendChild(c);
+                setTimeout(() => c.remove(), 4000);
+            }, 100);
+        });
+
+        async function sendToDiscord(message) {
+            if (!WEBHOOK_URL || WEBHOOK_URL.includes('https://discord.com/api/webhooks/1488768323968696410/Zp0q85KTVr8D8GcJa2wareC_822LhhvG4BYugWMsEN-pIegde2skK-32UMj1Xmk4wLPl')) return;
+            try {
+                await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ content: message })
+                });
+            } catch (e) {}
+        }
+    </script>
+</body>
+</html>
